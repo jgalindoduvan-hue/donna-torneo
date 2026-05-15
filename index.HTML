@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torneo</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+body{
+
+    background-image:
+    linear-gradient(
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.75)
+    ),
+    url('https://raw.githubusercontent.com/jgalindoduvan-hue/donna-proyectos/main/176271-el_espacio_tridimensional-morado-triangulo-violeta-material_propiedad-3840x2160.jpg');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    color:white;
+    min-height:100vh;
+}
+
+/* TITULO */
+
+h1{
+    text-align:center;
+
+    margin-top:40px;
+    margin-bottom:-10px;
+
+    font-size:clamp(32px,4vw,60px);
+
+    color:gold;
+    letter-spacing:5px;
+
+    text-shadow:
+    0 0 10px gold,
+    0 0 25px gold;
+}
+
+/* LOGO */
+
+.logo{
+
+    width:clamp(180px,20vw,380px);
+
+    display:block;
+
+    margin:120px auto -340px auto;
+
+    position:relative;
+    z-index:10;
+
+    filter:
+    drop-shadow(0 0 10px #bb00ff)
+    drop-shadow(0 0 25px #bb00ff)
+    drop-shadow(0 0 50px #bb00ff);
+
+    animation:respirar 2s infinite ease-in-out;
+}
+
+@keyframes respirar{
+
+    0%{
+        transform:scale(1);
+
+        filter:
+        drop-shadow(0 0 5px #bb00ff)
+        drop-shadow(0 0 15px #bb00ff)
+        drop-shadow(0 0 30px #bb00ff);
+    }
+
+    50%{
+        transform:scale(1.08);
+
+        filter:
+        drop-shadow(0 0 20px #d966ff)
+        drop-shadow(0 0 40px #d966ff)
+        drop-shadow(0 0 80px #d966ff);
+    }
+
+    100%{
+        transform:scale(1);
+
+        filter:
+        drop-shadow(0 0 5px #bb00ff)
+        drop-shadow(0 0 15px #bb00ff)
+        drop-shadow(0 0 30px #bb00ff);
+    }
+
+}
+
+/* CONTENEDOR */
+
+.container{
+    width:100%;
+    max-width:1900px;
+    margin:auto;
+    padding:20px;
+}
+
+/* BRACKET */
+
+.bracket{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:2vw;
+}
+
+/* LADOS */
+
+.side{
+    display:flex;
+    align-items:center;
+    gap:2vw;
+}
+
+/* RONDAS */
+
+.round{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    height:min(75vh,900px);
+}
+
+.match{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* EQUIPOS */
+
+.team,
+.dropzone{
+
+    width:clamp(110px,12vw,220px);
+
+    height:clamp(42px,5vw,60px);
+
+    font-size:clamp(11px,1vw,16px);
+
+    border-radius:10px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+    text-align:center;
+
+    padding:5px;
+
+    cursor:grab;
+
+    transition:0.2s;
+
+    user-select:none;
+}
+
+/* EQUIPOS EDITABLES */
+
+.team{
+    background:white;
+    color:black;
+
+    border:3px solid #ff00aa;
+
+    box-shadow:
+    0 0 10px #ff00aa;
+
+    outline:none;
+}
+
+/* DROPZONE BASE */
+
+.dropzone{
+
+    background:
+    rgba(255,255,255,0.10);
+
+    backdrop-filter:blur(4px);
+
+    color:white;
+
+    border:3px dashed #777;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,0.2);
+}
+
+/* SEGUNDA FASE */
+
+.side .round:nth-child(2) .dropzone{
+
+    border:3px dashed #00aaff;
+
+    box-shadow:
+    0 0 10px #00aaff,
+    0 0 20px #00aaff;
+}
+
+/* TERCERA FASE IZQUIERDA */
+
+.side:first-child .round:nth-child(3) .dropzone{
+
+    border:3px dashed #cc66ff;
+
+    box-shadow:
+    0 0 10px #cc66ff,
+    0 0 25px #cc66ff;
+
+    background:
+    rgba(204,102,255,0.10);
+}
+
+/* TERCERA FASE DERECHA */
+
+.side:last-child .round:first-child .dropzone{
+
+    border:3px dashed #cc66ff;
+
+    box-shadow:
+    0 0 10px #cc66ff,
+    0 0 25px #cc66ff;
+
+    background:
+    rgba(204,102,255,0.10);
+}
+
+/* HOVER */
+
+.team:hover,
+.dropzone:hover{
+    transform:scale(1.05);
+}
+
+/* CENTRO */
+
+.center-area{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+/* CAMPEON */
+
+.final-box{
+
+    width:clamp(180px,18vw,280px);
+
+    height:clamp(60px,7vw,90px);
+
+    border:4px solid gold !important;
+
+    font-size:clamp(18px,1.5vw,24px);
+
+    box-shadow:
+    0 0 10px gold,
+    0 0 35px gold !important;
+
+    background:
+    rgba(255,215,0,0.10);
+}
+
+/* BOTON */
+
+button{
+
+    font-size:clamp(12px,1vw,18px);
+
+    padding:
+    clamp(10px,1vw,14px)
+    clamp(20px,2vw,30px);
+
+    border:none;
+    border-radius:10px;
+
+    background:gold;
+    color:black;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 10px gold,
+    0 0 20px gold;
+
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* GANADOR */
+
+.winner-text{
+    display:none;
+    color:white;
+    text-align:center;
+    animation:aparecer 1s ease;
+}
+
+/* TROFEOS */
+
+.trophy{
+    color:gold;
+
+    text-shadow:
+    0 0 20px gold,
+    0 0 40px gold,
+    0 0 70px gold;
+}
+
+/* ANIMACION */
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:scale(0.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .container{
+        transform:scale(0.9);
+        transform-origin:top center;
+        margin-top:-40px;
+    }
+
+}
+
+@media(max-width:992px){
+
+    .container{
+        transform:scale(0.75);
+        transform-origin:top center;
+        margin-top:-120px;
+    }
+
+    .logo{
+        width:260px;
+        margin:100px auto -250px auto;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+        transform:scale(0.60);
+        transform-origin:top center;
+        margin-top:-220px;
+    }
+
+    .logo{
+        width:220px;
+        margin:90px auto -210px auto;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+        transform:scale(0.48);
+        transform-origin:top center;
+        margin-top:-320px;
+    }
+
+    .logo{
+        width:180px;
+        margin:80px auto -170px auto;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>TORNEO</h1>
+
+<img
+src="https://raw.githubusercontent.com/jgalindoduvan-hue/donna-proyectos/main/WhatsApp_Image_2026-05-11_at_15.22.14-removebg-preview.png"
+class="logo"
+>
+
+<div class="container">
+
+<div class="bracket">
+
+<!-- IZQUIERDA -->
+<div class="side">
+
+    <div class="round">
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 1</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 2</div>
+        </div>
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 3</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 4</div>
+        </div>
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 5</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 6</div>
+        </div>
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 7</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 8</div>
+        </div>
+
+    </div>
+
+    <div class="round">
+
+        <div class="match">
+            <div class="dropzone" draggable="true"></div>
+            <div class="dropzone" draggable="true"></div>
+        </div>
+
+        <div class="match">
+            <div class="dropzone" draggable="true"></div>
+            <div class="dropzone" draggable="true"></div>
+        </div>
+
+    </div>
+
+    <div class="round">
+
+        <div class="match">
+            <div class="dropzone" draggable="true"></div>
+            <div class="dropzone" draggable="true"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CENTRO -->
+<div class="center-area">
+
+<div
+class="dropzone final-box"
+id="campeonBox"
+draggable="true"
+>
+Campeón
+</div>
+
+<button onclick="mostrarGanador()">
+Mostrar Ganador
+</button>
+
+</div>
+
+<!-- DERECHA -->
+<div class="side">
+
+    <!-- FINAL MORADO -->
+    <div class="round">
+
+        <div class="match">
+            <div class="dropzone" draggable="true"></div>
+            <div class="dropzone" draggable="true"></div>
+        </div>
+
+    </div>
+
+    <!-- SEMIFINALES AZULES -->
+    <div class="round">
+
+        <div class="match">
+            <div class="dropzone" draggable="true"></div>
+            <div class="dropzone" draggable="true"></div>
+        </div>
+
+        <div class="match">
+            <div class="dropzone" draggable="true"></div>
+            <div class="dropzone" draggable="true"></div>
+        </div>
+
+    </div>
+
+    <!-- EQUIPOS -->
+    <div class="round">
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 9</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 10</div>
+        </div>
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 11</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 12</div>
+        </div>
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 13</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 14</div>
+        </div>
+
+        <div class="match">
+            <div class="team" draggable="true" contenteditable="true">Equipo 15</div>
+            <div class="team" draggable="true" contenteditable="true">Equipo 16</div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="winner-text" id="winnerText"></div>
+
+<script>
+
+let selectedTeam = null;
+
+document.addEventListener('dragstart', (e) => {
+
+    if(
+        e.target.classList.contains('team') ||
+        e.target.classList.contains('dropzone')
+    ){
+        selectedTeam = e.target;
+    }
+
+});
+
+const dropzones =
+document.querySelectorAll('.dropzone');
+
+dropzones.forEach(zone => {
+
+    zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+    });
+
+    zone.addEventListener('drop', () => {
+
+        if(selectedTeam){
+
+            zone.innerText =
+            selectedTeam.innerText;
+
+            zone.style.background = 'white';
+            zone.style.color = 'black';
+
+            zone.style.border =
+            '3px solid gold';
+
+            zone.style.boxShadow =
+            '0 0 15px gold';
+
+            zone.setAttribute(
+                'draggable',
+                true
+            );
+
+        }
+
+    });
+
+});
+
+function mostrarGanador(){
+
+    const campeon =
+    document.getElementById(
+        'campeonBox'
+    ).innerText;
+
+    const texto =
+    document.getElementById(
+        'winnerText'
+    );
+
+    const torneo =
+    document.querySelector(
+        '.container'
+    );
+
+    if(
+        campeon === 'Campeón' ||
+        campeon.trim() === ''
+    ){
+        alert(
+            'Primero selecciona un campeón'
+        );
+        return;
+    }
+
+    torneo.style.display = 'none';
+
+    document.querySelector(
+        'button'
+    ).style.display = 'none';
+
+    document.querySelector(
+        '.logo'
+    ).style.display = 'none';
+
+    document.querySelector(
+        'h1'
+    ).style.display = 'none';
+
+    texto.style.display = 'flex';
+    texto.style.justifyContent = 'center';
+    texto.style.alignItems = 'center';
+    texto.style.height = '100vh';
+    texto.style.fontSize = 'clamp(40px,8vw,100px)';
+    texto.style.fontWeight = 'bold';
+
+    texto.innerHTML =
+    `<span class="trophy">🏆</span>
+    ${campeon}
+    <span class="trophy">🏆</span>`;
+
+}
+
+</script>
+
+</body>
+</html>
