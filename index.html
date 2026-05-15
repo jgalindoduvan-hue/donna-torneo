@@ -37,83 +37,15 @@ body{
     min-height:100vh;
 }
 
-/* TITULO */
-
-h1{
-    text-align:center;
-
-    margin-top:40px;
-    margin-bottom:-10px;
-
-    font-size:clamp(32px,4vw,60px);
-
-    color:gold;
-    letter-spacing:5px;
-
-    text-shadow:
-    0 0 10px gold,
-    0 0 25px gold;
-}
-
-/* LOGO */
-
-.logo{
-
-    width:clamp(180px,20vw,380px);
-
-    display:block;
-
-    margin:120px auto -340px auto;
-
-    position:relative;
-    z-index:10;
-
-    filter:
-    drop-shadow(0 0 10px #bb00ff)
-    drop-shadow(0 0 25px #bb00ff)
-    drop-shadow(0 0 50px #bb00ff);
-
-    animation:respirar 2s infinite ease-in-out;
-}
-
-@keyframes respirar{
-
-    0%{
-        transform:scale(1);
-
-        filter:
-        drop-shadow(0 0 5px #bb00ff)
-        drop-shadow(0 0 15px #bb00ff)
-        drop-shadow(0 0 30px #bb00ff);
-    }
-
-    50%{
-        transform:scale(1.08);
-
-        filter:
-        drop-shadow(0 0 20px #d966ff)
-        drop-shadow(0 0 40px #d966ff)
-        drop-shadow(0 0 80px #d966ff);
-    }
-
-    100%{
-        transform:scale(1);
-
-        filter:
-        drop-shadow(0 0 5px #bb00ff)
-        drop-shadow(0 0 15px #bb00ff)
-        drop-shadow(0 0 30px #bb00ff);
-    }
-
-}
-
 /* CONTENEDOR */
 
 .container{
     width:100%;
     max-width:1900px;
     margin:auto;
-    padding:20px;
+
+    /* MAS PEGADO A LA IZQUIERDA */
+    padding:20px 10px 20px 0px;
 }
 
 /* BRACKET */
@@ -123,7 +55,7 @@ h1{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:2vw;
+    gap:1vw;
 }
 
 /* LADOS */
@@ -131,7 +63,7 @@ h1{
 .side{
     display:flex;
     align-items:center;
-    gap:2vw;
+    gap:1vw;
 }
 
 /* RONDAS */
@@ -178,7 +110,7 @@ h1{
     user-select:none;
 }
 
-/* EQUIPOS EDITABLES */
+/* EQUIPOS */
 
 .team{
     background:white;
@@ -192,7 +124,7 @@ h1{
     outline:none;
 }
 
-/* DROPZONE BASE */
+/* DROPZONE */
 
 .dropzone{
 
@@ -220,22 +152,9 @@ h1{
     0 0 20px #00aaff;
 }
 
-/* TERCERA FASE IZQUIERDA */
+/* TERCERA FASE */
 
-.side:first-child .round:nth-child(3) .dropzone{
-
-    border:3px dashed #cc66ff;
-
-    box-shadow:
-    0 0 10px #cc66ff,
-    0 0 25px #cc66ff;
-
-    background:
-    rgba(204,102,255,0.10);
-}
-
-/* TERCERA FASE DERECHA */
-
+.side:first-child .round:nth-child(3) .dropzone,
 .side:last-child .round:first-child .dropzone{
 
     border:3px dashed #cc66ff;
@@ -261,7 +180,109 @@ h1{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:20px;
+    gap:18px;
+}
+
+/* LOGO (ÚNICO CAMBIO) */
+
+.logo{
+
+    width:clamp(180px,20vw,340px);
+
+    display:block;
+
+    /* SUBIR 1 CM */
+    transform: translateY(-1cm);
+
+    /* MAS PEGADO A TORNEO */
+    margin-bottom:-65px;
+
+    filter:
+    drop-shadow(0 0 10px #bb00ff)
+    drop-shadow(0 0 25px #bb00ff)
+    drop-shadow(0 0 50px #bb00ff);
+
+    animation:respirar 2s infinite ease-in-out;
+}
+
+/* TITULO */
+
+.titulo-torneo{
+
+    text-align:center;
+
+    margin-top:0px;
+    margin-bottom:10px;
+
+    font-size:clamp(32px,4vw,60px);
+
+    color:gold;
+
+    letter-spacing:5px;
+
+    text-shadow:
+    0 0 10px gold,
+    0 0 25px gold;
+}
+
+/* ANIMACION (AJUSTADA SOLO LOGO) */
+
+@keyframes respirar{
+
+    0%{
+        transform:scale(1) translateY(-1cm);
+
+        filter:
+        drop-shadow(0 0 5px #bb00ff)
+        drop-shadow(0 0 15px #bb00ff)
+        drop-shadow(0 0 30px #bb00ff);
+    }
+
+    50%{
+        transform:scale(1.08) translateY(-1cm);
+
+        filter:
+        drop-shadow(0 0 20px #d966ff)
+        drop-shadow(0 0 40px #d966ff)
+        drop-shadow(0 0 80px #d966ff);
+    }
+
+    100%{
+        transform:scale(1) translateY(-1cm);
+
+        filter:
+        drop-shadow(0 0 5px #bb00ff)
+        drop-shadow(0 0 15px #bb00ff)
+        drop-shadow(0 0 30px #bb00ff);
+    }
+
+}
+
+/* FINALISTAS */
+
+.finalists{
+    display:flex;
+    gap:15px;
+}
+
+/* FINALISTAS */
+
+.finalist-box{
+
+    width:clamp(150px,14vw,220px);
+
+    height:clamp(50px,6vw,70px);
+
+    border:3px dashed #ff4dff !important;
+
+    box-shadow:
+    0 0 10px #ff4dff,
+    0 0 25px #ff4dff !important;
+
+    background:
+    rgba(255,0,255,0.10);
+
+    font-size:clamp(14px,1vw,18px);
 }
 
 /* CAMPEON */
@@ -324,8 +345,6 @@ button:hover{
     animation:aparecer 1s ease;
 }
 
-/* TROFEOS */
-
 .trophy{
     color:gold;
 
@@ -334,8 +353,6 @@ button:hover{
     0 0 40px gold,
     0 0 70px gold;
 }
-
-/* ANIMACION */
 
 @keyframes aparecer{
 
@@ -358,7 +375,6 @@ button:hover{
     .container{
         transform:scale(0.9);
         transform-origin:top center;
-        margin-top:-40px;
     }
 
 }
@@ -368,12 +384,6 @@ button:hover{
     .container{
         transform:scale(0.75);
         transform-origin:top center;
-        margin-top:-120px;
-    }
-
-    .logo{
-        width:260px;
-        margin:100px auto -250px auto;
     }
 
 }
@@ -383,12 +393,6 @@ button:hover{
     .container{
         transform:scale(0.60);
         transform-origin:top center;
-        margin-top:-220px;
-    }
-
-    .logo{
-        width:220px;
-        margin:90px auto -210px auto;
     }
 
 }
@@ -398,12 +402,6 @@ button:hover{
     .container{
         transform:scale(0.48);
         transform-origin:top center;
-        margin-top:-320px;
-    }
-
-    .logo{
-        width:180px;
-        margin:80px auto -170px auto;
     }
 
 }
@@ -413,13 +411,6 @@ button:hover{
 
 <body>
 
-<h1>TORNEO</h1>
-
-<img
-src="https://raw.githubusercontent.com/jgalindoduvan-hue/donna-proyectos/main/WhatsApp_Image_2026-05-11_at_15.22.14-removebg-preview.png"
-class="logo"
->
-
 <div class="container">
 
 <div class="bracket">
@@ -427,63 +418,80 @@ class="logo"
 <!-- IZQUIERDA -->
 <div class="side">
 
-    <div class="round">
+<div class="round">
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 1</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 2</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 1</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 2</div>
+</div>
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 3</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 4</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 3</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 4</div>
+</div>
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 5</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 6</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 5</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 6</div>
+</div>
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 7</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 8</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 7</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 8</div>
+</div>
 
-    </div>
+</div>
 
-    <div class="round">
+<div class="round">
 
-        <div class="match">
-            <div class="dropzone" draggable="true"></div>
-            <div class="dropzone" draggable="true"></div>
-        </div>
+<div class="match">
+<div class="dropzone" draggable="true"></div>
+<div class="dropzone" draggable="true"></div>
+</div>
 
-        <div class="match">
-            <div class="dropzone" draggable="true"></div>
-            <div class="dropzone" draggable="true"></div>
-        </div>
+<div class="match">
+<div class="dropzone" draggable="true"></div>
+<div class="dropzone" draggable="true"></div>
+</div>
 
-    </div>
+</div>
 
-    <div class="round">
+<div class="round">
 
-        <div class="match">
-            <div class="dropzone" draggable="true"></div>
-            <div class="dropzone" draggable="true"></div>
-        </div>
+<div class="match">
+<div class="dropzone finalist-box" draggable="true"></div>
+<div class="dropzone finalist-box" draggable="true"></div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
 <!-- CENTRO -->
 <div class="center-area">
 
-<div
-class="dropzone final-box"
-id="campeonBox"
-draggable="true"
+<img
+src="https://raw.githubusercontent.com/jgalindoduvan-hue/donna-proyectos/main/WhatsApp%20Image%202026-05-15%20at%2013.42.35-Photoroom.png"
+class="logo"
 >
+
+<h1 class="titulo-torneo">
+TORNEO
+</h1>
+
+<div class="finalists">
+
+<div class="dropzone finalist-box" draggable="true">
+Finalista 1
+</div>
+
+<div class="dropzone finalist-box" draggable="true">
+Finalista 2
+</div>
+
+</div>
+
+<div class="dropzone final-box" id="campeonBox" draggable="true">
 Campeón
 </div>
 
@@ -496,55 +504,52 @@ Mostrar Ganador
 <!-- DERECHA -->
 <div class="side">
 
-    <!-- FINAL MORADO -->
-    <div class="round">
+<div class="round">
 
-        <div class="match">
-            <div class="dropzone" draggable="true"></div>
-            <div class="dropzone" draggable="true"></div>
-        </div>
+<div class="match">
+<div class="dropzone finalist-box" draggable="true"></div>
+<div class="dropzone finalist-box" draggable="true"></div>
+</div>
 
-    </div>
+</div>
 
-    <!-- SEMIFINALES AZULES -->
-    <div class="round">
+<div class="round">
 
-        <div class="match">
-            <div class="dropzone" draggable="true"></div>
-            <div class="dropzone" draggable="true"></div>
-        </div>
+<div class="match">
+<div class="dropzone" draggable="true"></div>
+<div class="dropzone" draggable="true"></div>
+</div>
 
-        <div class="match">
-            <div class="dropzone" draggable="true"></div>
-            <div class="dropzone" draggable="true"></div>
-        </div>
+<div class="match">
+<div class="dropzone" draggable="true"></div>
+<div class="dropzone" draggable="true"></div>
+</div>
 
-    </div>
+</div>
 
-    <!-- EQUIPOS -->
-    <div class="round">
+<div class="round">
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 9</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 10</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 9</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 10</div>
+</div>
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 11</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 12</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 11</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 12</div>
+</div>
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 13</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 14</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 13</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 14</div>
+</div>
 
-        <div class="match">
-            <div class="team" draggable="true" contenteditable="true">Equipo 15</div>
-            <div class="team" draggable="true" contenteditable="true">Equipo 16</div>
-        </div>
+<div class="match">
+<div class="team" draggable="true" contenteditable="true">Equipo 15</div>
+<div class="team" draggable="true" contenteditable="true">Equipo 16</div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
@@ -608,43 +613,25 @@ dropzones.forEach(zone => {
 function mostrarGanador(){
 
     const campeon =
-    document.getElementById(
-        'campeonBox'
-    ).innerText;
+    document.getElementById('campeonBox').innerText;
 
     const texto =
-    document.getElementById(
-        'winnerText'
-    );
+    document.getElementById('winnerText');
 
     const torneo =
-    document.querySelector(
-        '.container'
-    );
+    document.querySelector('.container');
 
     if(
         campeon === 'Campeón' ||
         campeon.trim() === ''
     ){
-        alert(
-            'Primero selecciona un campeón'
-        );
+        alert('Primero selecciona un campeón');
         return;
     }
 
     torneo.style.display = 'none';
 
-    document.querySelector(
-        'button'
-    ).style.display = 'none';
-
-    document.querySelector(
-        '.logo'
-    ).style.display = 'none';
-
-    document.querySelector(
-        'h1'
-    ).style.display = 'none';
+    document.querySelector('button').style.display = 'none';
 
     texto.style.display = 'flex';
     texto.style.justifyContent = 'center';
